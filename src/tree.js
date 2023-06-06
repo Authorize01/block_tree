@@ -127,10 +127,20 @@ const block = {
         }
         return leaf
     },
+    encodeTree: function (leave) {
+        var level = [];
+        leave.forEach(function (i) {
+            if (!level.includes(i)) {
+                level.push(i);
+            }
+        });
+        return level;
+    },
     tree: function (leave) {
         let tr = [leave]
         while (leave.length > 1) {
-            leave = this.chained(leave); tr.push(leave);
+            leave = this.chained(leave); 
+            tr.push(leave);
         }
         return tr
     },
@@ -148,7 +158,7 @@ const block = {
         }
         return proof
     },
-    isValue:function(){
+    isValue: function () {
 
     },
     isValid: function (h, proof) {
@@ -201,7 +211,7 @@ const block = {
     verify: function (v, proof, root) {
         return this.isValid(v, proof).reverse()[0][0]
     },
-    validaty: function (leave, last) {
+    valid: function (leave, last) {
         let com = {}, next = []
         for (var i = 0; i < last.length; i++) {
             let r = leave.indexOf(last[i]) > -1 ? 0 : last[i]

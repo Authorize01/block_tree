@@ -1,6 +1,9 @@
-import block from './src/tree.js'
+import block from './src/treeV2.js'
 
-let data = 'abcdf'.split('').map(i=>block.sha32(i))
-let node = block.tree(data)
-let next = block.proof(data[data.length-1], node)
-console.log(node,next)
+let data = 'abcdfeg'.split('')
+let root = block.root(data)
+let pr = block.proof('b', data)
+let vr = block.Buffer('hallo')
+let bnv = block.RLP_encode(['erevereeyryeryeuetu','dfsdgs'])
+console.log(vr,bnv)
+
